@@ -82,21 +82,21 @@ const EditThesis = () => {
     }
   };
 
-  if (loading) return <div className="text-center py-20 text-white">Loading...</div>;
+  if (loading) return <div className="text-center py-20 text-text-main">Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-slate-900 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px]"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-[100px]"></div>
+    <div className="min-h-screen bg-white py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-blue/5 rounded-full blur-[100px]"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-red/5 rounded-full blur-[100px]"></div>
 
       <div className="max-w-3xl mx-auto relative z-10">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent-red to-accent-blue mb-4">
             Edit Thesis
           </h1>
         </div>
 
-        <div className="bg-slate-800/60 backdrop-blur-xl border border-slate-700 rounded-3xl p-8 sm:p-12 shadow-2xl">
+        <div className="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-xl">
           {error && (
             <div className="mb-8 p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400">
               <p>{error}</p>
@@ -106,37 +106,37 @@ const EditThesis = () => {
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Thesis Title</label>
-                <input type="text" name="title" required value={formData.title} onChange={handleChange} className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" />
+                <label className="block text-sm font-medium text-slate-700 mb-2">Thesis Title</label>
+                <input type="text" name="title" required value={formData.title} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-text-main focus:outline-none focus:ring-2 focus:ring-accent-red focus:border-transparent transition-all" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Author Name</label>
-                <input type="text" name="author" required value={formData.author} onChange={handleChange} className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" />
+                <label className="block text-sm font-medium text-slate-700 mb-2">Author Name</label>
+                <input type="text" name="author" required value={formData.author} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-text-main focus:outline-none focus:ring-2 focus:ring-accent-red focus:border-transparent transition-all" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Department</label>
-                <input type="text" name="department" required value={formData.department} onChange={handleChange} className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" />
+                <label className="block text-sm font-medium text-slate-700 mb-2">Department</label>
+                <input type="text" name="department" required value={formData.department} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-text-main focus:outline-none focus:ring-2 focus:ring-accent-red focus:border-transparent transition-all" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Google Colab Link (Optional)</label>
-                <input type="url" name="colabLink" value={formData.colabLink} onChange={handleChange} className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" />
+                <label className="block text-sm font-medium text-slate-700 mb-2">Google Colab Link (Optional)</label>
+                <input type="url" name="colabLink" value={formData.colabLink} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-text-main focus:outline-none focus:ring-2 focus:ring-accent-red focus:border-transparent transition-all" />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Abstract</label>
-              <textarea name="abstract" required rows="4" value={formData.abstract} onChange={handleChange} className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"></textarea>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Abstract</label>
+              <textarea name="abstract" required rows="4" value={formData.abstract} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-text-main focus:outline-none focus:ring-2 focus:ring-accent-red focus:border-transparent transition-all resize-none"></textarea>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">PDF Drive Link</label>
-              <input type="url" name="driveLink" required value={formData.driveLink} onChange={handleChange} className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" />
+              <label className="block text-sm font-medium text-slate-700 mb-2">PDF Drive Link</label>
+              <input type="url" name="driveLink" required value={formData.driveLink} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-text-main focus:outline-none focus:ring-2 focus:ring-accent-red focus:border-transparent transition-all" />
             </div>
 
-            <button type="submit" disabled={saving} className="w-full flex items-center justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all disabled:opacity-50">
+            <button type="submit" disabled={saving} className="w-full flex items-center justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-gradient-to-r from-accent-red to-accent-blue hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-red transition-all disabled:opacity-50">
               {saving ? 'Saving...' : 'Save Changes'}
             </button>
           </form>

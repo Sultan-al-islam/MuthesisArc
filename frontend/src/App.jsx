@@ -18,26 +18,26 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+    <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <Link to="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-              muThesis acrve
+            <Link to="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent-red to-accent-blue">
+              Mu ThesisArc
             </Link>
           </div>
           <div className="flex space-x-4 items-center">
-            <Link to="/" className="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</Link>
+            <Link to="/" className="text-text-main hover:text-accent-red transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</Link>
             {user ? (
               <>
-                <Link to="/upload" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-[0_0_15px_rgba(37,99,235,0.5)]">Upload</Link>
-                <Link to="/profile" className="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">{user.name}</Link>
-                <button onClick={handleLogout} className="hover:text-red-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Logout</button>
+                <Link to="/upload" className="bg-accent-red hover:opacity-90 text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-[0_0_15px_rgba(215,61,51,0.5)]">Upload</Link>
+                <Link to="/profile" className="text-text-main hover:text-accent-red transition-colors px-3 py-2 rounded-md text-sm font-medium">{user.name}</Link>
+                <button onClick={handleLogout} className="text-text-main hover:text-red-600 transition-colors px-3 py-2 rounded-md text-sm font-medium">Logout</button>
               </>
             ) : (
               <>
-                <Link to="/login" className="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Login</Link>
-                <Link to="/register" className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-[0_0_15px_rgba(147,51,234,0.5)]">Register</Link>
+                <Link to="/login" className="text-text-main hover:text-accent-red transition-colors px-3 py-2 rounded-md text-sm font-medium">Login</Link>
+                <Link to="/register" className="bg-accent-red hover:opacity-90 text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-[0_0_15px_rgba(215,61,51,0.5)]">Register</Link>
               </>
             )}
           </div>
@@ -51,7 +51,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen bg-slate-900 text-slate-100 font-sans">
+        <div className="min-h-screen bg-primary text-text-main font-sans">
           <Navbar />
           <div className="pt-16">
             <Routes>
