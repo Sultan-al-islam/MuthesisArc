@@ -41,6 +41,9 @@ app.get('/api/theses', async (req, res) => {
         ],
       };
     }
+    if (req.query.uploader) {
+      query.uploader = req.query.uploader;
+    }
     const theses = await Thesis.find(query)
       .populate('uploader', 'name studentId dept batch')
       .sort({ createdAt: -1 });

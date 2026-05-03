@@ -131,6 +131,27 @@ const Home = () => {
                     View Code
                   </a>
                 )}
+                {user && selectedThesis.uploader && (user._id === (selectedThesis.uploader._id || selectedThesis.uploader)) && (
+                  <div className="flex gap-2">
+                    <Link
+                      to={`/edit/${selectedThesis._id}`}
+                      className="p-4 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition-all"
+                      title="Edit Thesis"
+                    >
+                      <Edit className="w-5 h-5" />
+                    </Link>
+                    <button
+                      onClick={() => {
+                        handleDelete(selectedThesis._id);
+                        setSelectedThesis(null);
+                      }}
+                      className="p-4 bg-red-50 hover:bg-red-100 text-accent-red rounded-lg transition-all"
+                      title="Delete Thesis"
+                    >
+                      <Trash2 className="w-5 h-5" />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -224,7 +245,7 @@ const Home = () => {
                     {thesis.abstract}
                   </p>
 
-                  <div className="mt-auto space-y-4">
+                <div className="mt-auto space-y-4">
                     <button 
                       onClick={() => setSelectedThesis(thesis)}
                       className="w-full py-3 px-4 bg-accent-red text-white rounded-2xl font-bold text-sm transition-all hover:opacity-90 shadow-lg shadow-accent-red/20"
@@ -232,7 +253,7 @@ const Home = () => {
                       View Details
                     </button>
                     
-                    {user && thesis.uploader && String(user._id) === String(thesis.uploader) && (
+                    {user && thesis.uploader && (user._id === (thesis.uploader._id || thesis.uploader)) && (
                       <div className="flex gap-3 pt-4 border-t border-slate-100">
                         <Link
                           to={`/edit/${thesis._id}`}

@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
-import { User, Settings, CheckCircle, AlertCircle } from 'lucide-react';
+import { User, Settings, CheckCircle, AlertCircle, BookOpen, ArrowRight, Edit, Trash2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const { user, login } = useContext(AuthContext);
@@ -15,6 +16,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+  const [userTheses, setUserTheses] = useState([]);
 
   useEffect(() => {
     if (user) {
@@ -24,8 +26,34 @@ const Profile = () => {
         batch: user.batch || '',
         password: '',
       });
+      fetchUserTheses();
     }
   }, [user]);
+
+  const fetchUserTheses = async () => {
+    try {
+      const res = await axios.get(`/api/theses?uploader=${user._id}`);
+      setUserTheses(res.data);
+    } catch (err) {
+      console.error('Failed to fetch user theses', err);
+    }
+  };
+
+  const handleDeleteThesis = async (id) => {
+    if (window.confirm('Are you sure you want to delete this thesis?')) {
+      try {
+        await axios.delete(`/api/theses/${id}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+        setUserTheses(userTheses.filter((t) => t._id !== id));
+      } catch (err) {
+        console.error('Failed to delete thesis', err);
+        alert('Failed to delete thesis');
+      }
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -170,6 +198,56 @@ const Profile = () => {
               </div>
             </form>
           </div>
+        </div>
+
+        {/* My Theses Section */}
+        <div className="mt-16">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-text-main flex items-center gap-3">
+              <BookOpen className="text-accent-red" /> My Uploaded Theses
+            </h2>
+          </div>
+
+          {userTheses.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {userTheses.map((thesis) => (
+                <div key={thesis._id} className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="font-bold text-text-main mb-2 line-clamp-1">{thesis.title}</h3>
+                  <p className="text-slate-500 text-xs mb-4 line-clamp-2">{thesis.abstract}</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{thesis.department}</span>
+                    <div className="flex gap-2">
+                      <Link
+                        to={`/edit/${thesis._id}`}
+                        className="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-all"
+                        title="Edit"
+                      >
+                        <Edit className="w-4 h-4" />
+                      </Link>
+                      <button
+                        onClick={() => handleDeleteThesis(thesis._id)}
+                        className="p-2 bg-red-50 hover:bg-red-100 text-accent-red rounded-lg transition-all"
+                        title="Delete"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white border border-dashed border-slate-300 rounded-3xl p-12 text-center">
+              <BookOpen className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+              <p className="text-slate-500 mb-6">You haven't uploaded any research papers yet.</p>
+              <Link
+                to="/upload"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-accent-blue text-white rounded-xl font-bold hover:opacity-90 transition-all shadow-lg shadow-accent-blue/20"
+              >
+                Upload Your First Thesis <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

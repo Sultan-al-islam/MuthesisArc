@@ -35,7 +35,7 @@ const EditThesis = () => {
         // For production, create a GET /api/theses/:id route
         const thesis = res.data.find((t) => t._id === id);
         if (thesis) {
-          if (String(thesis.uploader) !== String(user._id)) {
+          if ((thesis.uploader._id || thesis.uploader) !== user._id) {
             navigate('/');
             return;
           }
