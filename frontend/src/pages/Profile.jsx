@@ -45,7 +45,7 @@ const Profile = () => {
         },
       };
 
-      const res = await axios.put('http://localhost:5000/api/users/profile', formData, config);
+      const res = await axios.put('/api/users/profile', formData, config);
       login(res.data);
       setSuccess('Profile updated successfully!');
       setFormData({ ...formData, password: '' });

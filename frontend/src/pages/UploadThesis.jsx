@@ -33,7 +33,7 @@ const UploadThesis = () => {
     setSuccess(false);
 
     try {
-      await axios.post('http://localhost:5000/api/theses', formData, {
+      await axios.post('/api/theses', formData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${user.token}`,

@@ -13,7 +13,7 @@ const Home = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this thesis?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/theses/${id}`, {
+        await axios.delete(`/api/theses/${id}`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -29,7 +29,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTheses = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/theses');
+        const res = await axios.get('/api/theses');
         setTheses(res.data);
       } catch (err) {
         console.error('Failed to fetch theses', err);

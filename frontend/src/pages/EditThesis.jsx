@@ -30,7 +30,7 @@ const EditThesis = () => {
 
     const fetchThesis = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/theses');
+        const res = await axios.get('/api/theses');
         // Find thesis locally since we don't have a single thesis GET route.
         // For production, create a GET /api/theses/:id route
         const thesis = res.data.find((t) => t._id === id);
@@ -69,7 +69,7 @@ const EditThesis = () => {
     setError('');
 
     try {
-      await axios.put(`http://localhost:5000/api/theses/${id}`, formData, {
+      await axios.put(`/api/theses/${id}`, formData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${user.token}`,
