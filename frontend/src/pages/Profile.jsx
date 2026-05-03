@@ -59,7 +59,7 @@ const Profile = () => {
   if (!user) return <div className="text-center py-20">Please log in to view profile.</div>;
 
   return (
-    <div className="min-h-screen bg-white py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-secondary py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent-blue/5 rounded-full blur-[100px]"></div>
       
       <div className="max-w-3xl mx-auto relative z-10">

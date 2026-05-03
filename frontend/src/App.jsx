@@ -1,59 +1,21 @@
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import UploadThesis from './pages/UploadThesis';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import EditThesis from './pages/EditThesis';
-import { AuthProvider, AuthContext } from './context/AuthContext';
-import { useContext } from 'react';
-
-const Navbar = () => {
-  const { user, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
-
-  return (
-    <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <Link to="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent-red to-accent-blue">
-              Mu ThesisArc
-            </Link>
-          </div>
-          <div className="flex space-x-4 items-center">
-            <Link to="/" className="text-text-main hover:text-accent-red transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</Link>
-            {user ? (
-              <>
-                <Link to="/upload" className="bg-accent-red hover:opacity-90 text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-[0_0_15px_rgba(215,61,51,0.5)]">Upload</Link>
-                <Link to="/profile" className="text-text-main hover:text-accent-red transition-colors px-3 py-2 rounded-md text-sm font-medium">{user.name}</Link>
-                <button onClick={handleLogout} className="text-text-main hover:text-red-600 transition-colors px-3 py-2 rounded-md text-sm font-medium">Logout</button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="text-text-main hover:text-accent-red transition-colors px-3 py-2 rounded-md text-sm font-medium">Login</Link>
-                <Link to="/register" className="bg-accent-red hover:opacity-90 text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-[0_0_15px_rgba(215,61,51,0.5)]">Register</Link>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
-};
+import { AuthProvider } from './context/AuthContext';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen bg-primary text-text-main font-sans">
+        <div className="min-h-screen flex flex-col bg-secondary text-text-main font-sans">
           <Navbar />
-          <div className="pt-16">
+          <main className="flex-grow pt-16 sm:pt-20">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/upload" element={<UploadThesis />} />
@@ -62,7 +24,8 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/edit/:id" element={<EditThesis />} />
             </Routes>
-          </div>
+          </main>
+          <Footer />
         </div>
       </Router>
     </AuthProvider>
@@ -70,3 +33,4 @@ function App() {
 }
 
 export default App;
+

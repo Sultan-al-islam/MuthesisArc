@@ -41,7 +41,9 @@ app.get('/api/theses', async (req, res) => {
         ],
       };
     }
-    const theses = await Thesis.find(query).sort({ createdAt: -1 });
+    const theses = await Thesis.find(query)
+      .populate('uploader', 'name studentId dept batch')
+      .sort({ createdAt: -1 });
     res.json(theses);
   } catch (error) {
     res.status(500).json({ message: 'Server Error' });

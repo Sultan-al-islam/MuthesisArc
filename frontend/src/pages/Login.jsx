@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-secondary flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-96 h-96 bg-accent-blue/5 rounded-full blur-[100px]"></div>
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <h2 className="mt-6 text-center text-4xl font-extrabold text-text-main">
